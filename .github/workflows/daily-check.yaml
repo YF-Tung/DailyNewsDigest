@@ -1,4 +1,4 @@
-name: F1 Ticket Watcher
+name: Daily News Digester
 
 on:
   schedule:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       LINE_TOKEN: ${{ secrets.LINE_TOKEN }}
-      LINE_USERID: ${{ secrets.LINE_USER_ID }}
+      LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
     steps:
