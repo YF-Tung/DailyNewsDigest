@@ -22,8 +22,29 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Restore cache
+        uses: actions/cache@v3
+        with:
+          path: cache/
+          key: ticket-cache
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Install dependencies
         run: pip install -r requirements.txt
 
       - name: Run script
         run: python check_ticket.py
+
+      - name: Save cache
+        if: success()
+        uses: actions/cache/save@v3
+        with:
+          path: cache/
+          key: ticket-cache

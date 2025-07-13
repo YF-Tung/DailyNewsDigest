@@ -4,6 +4,12 @@
 # LINE_TOKEN=xxx LINE_USER_ID=yyy OPENAI_API_KEY=zzz ./run_local.sh
 # =================
 
+# 如果 .credential.rc 存在，就 source 它
+if [ -f .credential.rc ]; then
+    echo "Sourcing .credential.rc..."
+    source .credential.rc
+fi
+
 # 顯示遮蔽過的 token 值
 echo "🔐 LINE_TOKEN: ${LINE_TOKEN:0:8}******"
 echo "👤 LINE_USER_ID: ${LINE_USER_ID:0:8}******"
